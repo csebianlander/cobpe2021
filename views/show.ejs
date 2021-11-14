@@ -1,0 +1,200 @@
+<% include ./partials/head %>
+
+  <div class="ui fluid styled accordion">
+    <div class="title">Select a teammate</div>
+    <div class="content">
+     <div class="ui list">
+        <% database.forEach(function(ballperson) { %>
+          <% if (ballperson.team === database[id].team) { %>
+           <div class="item">
+             <% if (ballperson.headshot !== "none") { %><img class="ui avatar image" src="<%= ballperson.headshot %>">
+             <% } else { %> <img class="ui avatar image" src="http://www.citi-assets.kybard.com/headshots/blank-avatar.png"> <% } %>
+             <div class="content">
+                <a class="header" href="/player/<%= ballperson.ID %>"><%= ballperson.firstName %> <%= ballperson.lastName %></a>
+             </div>
+            </div>
+          <% } %>
+        <% }) %>
+      </div>
+     </div>
+  </div>
+
+	<div class="ui fluid blue card">
+
+		<div class="content">
+			<div class="right floated">
+        <% if (database[id].headshot === "none") { %>
+				  <% if (database[id].gender.toUpperCase() === "MALE") { %>
+					  <p><i class="circular inverted blue man icon"></i></p>
+				  <% } else if (database[id].gender.toUpperCase() === "FEMALE") { %>
+					  <p><i class="circular inverted purple woman icon"></i></p>
+				  <% } %>
+        <% } %>
+				<% if (database[id].captain === "Y" || database[id].captain === "y") { %>
+					<p><i class="circular inverted orange star icon"></i></p>
+				<% } %>
+			</div>
+			<div class="header"><h2>
+        <% if (database[id].headshot !== "none") { %>
+          <img class="ui avatar image" src="<%= database[id].headshot %>">
+        <% } %>
+        <%= database[id].firstName %> <%= database[id].lastName %></h2></div>
+			<div class="ui input">
+				<form action="/player/<%= database[id].ID %>/teamset" method="POST">
+          <h4 id="teamHeader" class="meta ui left floated header"><a href="/list/teams#<%= database[id].team %>">Current Team:<% if (currentUser.username === "guest") { %> <%= database[id].team %> <% } %></a> </h4>
+
+          <% if (currentUser.username !== "guest") { %>
+          <input class="ui input" type="number" name="team" id="team" value="<%= database[id].team %>" maxlength="2" size="2">
+          <button class="ui mini teal attached right button">Change</button>
+          <% } %>
+        </form>
+        
+			</div>
+      
+			<div class="description">
+				<p> <% if(database[id].age && database[id].age > 0) { %>
+							<%= database[id].age %> years old,
+						<% } %>
+						<strong><%= database[id].position %></strong>,
+						<% if (database[id].yearsExperience === "0") { %>
+							first-year
+						<% } else if (database[id].yearsExperience === "1") { %>
+							1 year experience
+						<% } else { %>
+							 <%= database[id].yearsExperience %> years experience
+						<% } %>
+            <% if (!currentUser.captain && currentUser.username !== "guest" && database[id].averageScore !== -1) { %>
+              | <strong><i class="star icon"></i>&nbsp;<%=database[id].averageScore.toFixed(2)%></strong>
+            <% } %>
+        </p>
+			</div>
+		</div>
+	</div>
+
+
+  <div class="ui divider"></div>
+
+		<div class="ui styled fluid accordion">
+      <% if (database[id].headshot !== "none") { %>
+      <div class="title">
+				<i class="user icon"></i>
+				Headshot
+			</div>
+      <div class="content">
+        <img class="ui rounded image" src="<%= database[id].headshot %>">
+      </div>
+      <% } %>
+      <% if (currentUser && currentUser.username !== "guest") { %>
+			<div class="title">
+				<i class="info icon"></i>
+				Contact Info
+			</div>
+			<div class="center aligned content">
+				<% if (database[id].homeAddress ) { %>
+					<button class="ui fluid secondary basic button"><i class="home icon"></i> <%= database[id].homeAddress.toUpperCase() %></button><br />
+				<% } %>
+				<% if (database[id].Phone ) { %>
+					<a class="ui fluid blue button"href="tel:<%= database[id].Phone %>"><i class="call icon"></i> <%= database[id].Phone %></a><br />
+				<% } %>
+				<% if (database[id].emailAddress ) { %>
+					<a class="ui fluid green button" href="mailto:<%= database[id].emailAddress.toLowerCase() %>"><i class="mail icon"></i> <%= database[id].emailAddress.toLowerCase() %></a>
+				<% } %>
+			</div>
+			<% if (database[id].ecName ) { %>
+				<div class="title">
+					<i class="warning red icon"></i>
+					Emergency Contact
+				</div>
+				<div class="content">
+					<h3 class="ui dividing header"><%= database[id].ecName.toUpperCase() %>, <span style="text-transform: capitalize;"><%= database[id].ecRel %></span></h3>
+					<a class="ui huge fluid red button" href="tel:<%= database[id].ecPhone %>"><i class="call icon"></i> <%= database[id].ecPhone %></a>
+				</div>
+			<% } %>
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Read All Notes
+			</div>
+			<div class="content">
+				<div class="ui comments">
+				  <div class="comment">
+						<% if (database[id].notes.length === 0) { %>
+						<p><em>No notes found.</em></p>
+						<% } else { %>
+              <% if (currentUser.captain) { %>
+                <% var noteCount = 0; %>
+                <% database[id].notes.forEach(function(note) { %>
+                  <% if (currentUser.username === note.author) { %>
+                    <% noteCount++; %>
+                    <div class="content">
+                      <a class="author"><%= note.author %></a>
+                      <div class="metadata">
+                        <span class="date"><%= note.timestamp %></span>
+                        <span class="rating"> 
+                        <% for (i = 0; i < note.score; i++) { %>
+                          <i class="yellow star icon"></i>
+                        <% } %>
+                        </span>
+                      </div>
+                      <div class="text">
+                        <%= note.note %>
+                      </div>
+                    </div>
+                  <% } %>
+                <% }); %> 
+                <% if (noteCount === 0) { %>
+                  <p><em>No notes found.</em></p>
+                <% } %>
+              <% } else { %>
+                <% database[id].notes.forEach(function(note) { %>
+                  <div class="content">
+                    <a class="author"><%= note.author %></a>
+                    <div class="metadata">
+                      <span class="date"><%= note.timestamp %></span>
+                      <span class="rating"> 
+                      <% for (i = 0; i < note.score; i++) { %>
+                        <i class="yellow star icon"></i>
+                      <% } %>
+                      </span>
+                    </div>
+                    <div class="text">
+                      <%= note.note %>
+                    </div>
+                  </div>
+                <% }); %>
+						  <% } %>
+            <% } %>
+					</div>
+				</div>
+			</div>
+      <div class="active title">
+				<i class="plus icon"></i>
+				Add Note/Score
+			</div>
+			<div class="active content">
+				<form class="ui form" action="/player/<%= database[id].ID %>" method="POST">
+					<div class="field">
+						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
+						<div class="ui selection dropdown">
+              <input name="noteScore" type="hidden">
+              <i class="dropdown icon"></i>
+              <div class="default text" data-value="0">Score</div>
+              <div class="menu">
+                <div class="item" data-value="0">No score</div>
+                <div class="item" data-value="1"><i class="yellow star icon"></i></div>
+                <div class="item" data-value="2"><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+                <div class="item" data-value="3"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+                <div class="item" data-value="4"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+                <div class="item" data-value="5"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+              </div>
+            </div>
+
+            <textarea name="noteNote"></textarea>
+						<button class="ui fluid green bottom attached button" type="submit">Submit</button>
+					</div>
+					
+				</form>
+			</div>
+      <% } %>
+	</div>
+
+<% include ./partials/foot %>

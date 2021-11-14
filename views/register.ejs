@@ -1,0 +1,15 @@
+<% include ./partials/head %>
+
+
+	<h1>Sign Up</h1>
+<p>If you're seeing this page you'd better be Chuck</p>
+
+	<form action="/register" method="POST">
+		<input type="text" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="password">
+    <input type="checkbox" name="captain"> <label for="captain">Captain?</label>
+		<button>Register</button>
+	</form>
+
+
+<% include ./partials/foot %>

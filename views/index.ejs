@@ -1,0 +1,21 @@
+<% include ./partials/head %>
+	
+<img class="ui centered small image" src="/img/citi-open-logo.svg" alt="Citi Open">
+<h2 class="ui center aligned header">Ballperson Evaluation Tool</h2>
+
+<% if (!currentUser) { %>
+	<a href="/login" class="ui huge green fluid button">Log In</a>
+<% } else { %>
+	<a href="/list" class="ui huge blue fluid button"><i class="browser icon"></i> View all ballpersons by name</a>
+	<div class="ui divider"></div>
+	<a href="/list/teams" class="ui large yellow fluid button"><i class="sitemap icon"></i> View all ballpersons by team</a>
+	<div class="ui divider"></div>
+	<% if (currentUser.username !== "guest") { %>
+	<a href="https://docs.google.com/spreadsheets/d/16zZGQ52pmZBLnoGfJ_KTIaWIMufPZCAhZe5gVVDqUDE" class="ui large green fluid button"><i class="file excel outline icon"></i> View Google Spreadsheet</a>
+	<div class="ui divider"></div>
+	<a href="/refresh" class="ui large fluid red button" ><i class="refresh icon"></i> Refresh database</a>
+	<% } %>
+</div>
+<% } %>
+
+<% include ./partials/foot %>

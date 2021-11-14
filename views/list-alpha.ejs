@@ -1,0 +1,39 @@
+<% include ./partials/head %>
+
+<div class="ui fluid blue card">
+	<div class="content">
+		<h1 class="ui header">All Ballpersons
+			<div class="sub header">Sorted by Last Name</div>
+		</h1>
+		<div class="ui fluid big icon input">
+			<input type="text" id="searchInput" onkeyup="searchFilter()" placeholder="Search/filter by name...">
+			<i class="search icon"></i>
+		</div>
+	</div>
+</div>
+
+<div id="allNames">
+<% database.forEach(function(ballperson) { %>
+		<a class="ui fluid card" href="/player/<%= ballperson.ID %>">
+			<div class="content">
+				<div class="right floated meta"><%= ballperson.position.toUpperCase(); %></div>
+				<% if (ballperson.captain === "Y" || ballperson.captain === "y") { %>
+					<i class="right floated yellow star icon"></i>
+				<% } %>
+        <% if (ballperson.yearsExperience === "0") { %>
+					<i class="right floated green registered icon"></i>
+				<% } %>
+				<% if (ballperson.gender.toUpperCase() === "MALE") { %>
+					<i class="right floated blue man icon"></i>
+				<% } else if (ballperson.gender.toUpperCase() === "FEMALE") { %>
+					<i class="right floated purple woman icon"></i>
+				<% } %>
+				<div class="header"><%= ballperson.lastName.toUpperCase(); %>, <%= ballperson.firstName %></div>
+			</div>
+		</a>
+<% }); %>
+</div>
+
+<div class="content">&nbsp;</div>
+
+	<% include ./partials/foot %>

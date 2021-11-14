@@ -1,0 +1,36 @@
+.flushToMenu {
+	padding-top: 50px;
+}
+
+#topNav {
+	background: #b3d236;
+}
+
+.micro {
+	height: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+.userIcon {
+	padding-top: 9px;
+}
+
+.hidden {
+	display: none;
+}
+
+input#team {
+  width: 5em;
+  border: 0;
+  padding: .61734694551em;
+  margin-top: 1px;
+  margin-right: -4px;
+  border-radius: 4px 0px 0px 4px;
+  font-size: .78571429rem;
+  box-shadow: 0 0 0 1px rgba(34,36,38,.15);
+}
+
+#teamHeader {
+  margin-top: 3px;
+}

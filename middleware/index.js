@@ -82,9 +82,9 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 	var teamAssignments = [];
 	var numFinder = /\d+/;
 
-	var currentHour = getHours();
+	var currentHour = today.getHours();
 
-	var currentMinutes = getMinutes();
+	var currentMinutes = today.getMinutes();
 
 	for (i = 0; i < teamCount; i++) { teamAssignments.push("Team unassigned");	}
 

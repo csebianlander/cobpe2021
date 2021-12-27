@@ -64,7 +64,7 @@
 							 <%= database[id].yearsExperience %> years experience
 						<% } %>
             <% if (!currentUser.captain && currentUser.username !== "guest" && database[id].averageScore !== -1) { %>
-              | <strong><i class="star icon"></i>&nbsp;<%=database[id].averageScore.toFixed(2)%></strong>
+              | <strong><i class="star icon"></i>&nbsp;<%=(database[id].averageScore.toFixed(2))/2%></strong>
             <% } %>
         </p>
 			</div>

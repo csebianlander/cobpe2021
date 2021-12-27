@@ -48,7 +48,7 @@ middlewareObj.parseInitialDatabase = function (data) {
 
   
 	notes.forEach(function(note) {
-		var newNote = { ballperson: note[0], author: note[1], timestamp: note[2], note: note[3], score: note[4]};
+		var newNote = { ballperson: note[0], author: note[1], timestamp: note[2], category: note[3], score: note[4], note: note[5]};
 		
 		initialDatabase.forEach(function(row) {
 			if (newNote.ballperson === (row.firstName + " " + row.lastName)) {

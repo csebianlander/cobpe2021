@@ -13,7 +13,7 @@
 	<% teamNum = i + 1; %>
     <div class="title accordionTitle">
 			<h2>Team <%= teamNum %></h2>
-			<p><i class="calendar alternate icon"></i> <% schedule[database[id].team - 1] %></p>
+			<p><i class="calendar alternate icon"></i> <%= schedule[database[id].team - 1] %> %></p>
     </div>
     <div class="content accordionContent">
 			<% database.forEach(function(ballperson) { %>

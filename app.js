@@ -172,10 +172,12 @@ app.get("/refresh", middleware.isLoggedIn, function(req, res) {
                 console.log('The API returned an error: ' + err);
                 return console.log(err);
             }
-						unparsedData = [response.valueRanges[0].values, response.valueRanges[1].values];
+            unparsedData = [response.valueRanges[0].values, response.valueRanges[1].values];
             parsedData = middleware.parseInitialDatabase(unparsedData);
-            console.log(parsedData[0]);
-						teamCount = middleware.determineTeamCount(parsedData);
+            teamCount = middleware.determineTeamCount(parsedData);
+            scheduleData = middleware.parseSchedule(response.valueRanges[2].values, teamCount);
+            console.log("Database reloaded.");
+            console.log(scheduleData);
         });
     })
     .catch((err) => {

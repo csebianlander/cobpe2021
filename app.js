@@ -21,6 +21,7 @@ var google = require('googleapis'),
 
 var parsedData = {},
 		teamCount = Number,
+        scheduleData = [],
 		SPREADSHEET_ID = "16zZGQ52pmZBLnoGfJ_KTIaWIMufPZCAhZe5gVVDqUDE";
 
 googleAuth.authorize()
@@ -97,6 +98,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;  //adds current user info to all templates
 	res.locals.database = parsedData;
+    res.locals.schedule = scheduleData;
 	res.locals.teamCount = teamCount;
   next();
 });  

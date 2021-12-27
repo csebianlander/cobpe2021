@@ -79,6 +79,7 @@ middlewareObj.parseInitialDatabase = function (data) {
 }
 
 middlewareObj.parseSchedule = function(data, teamCount) {
+	var today = new Date();
 	var teamAssignments = [];
 	var numFinder = /\d+/;
 

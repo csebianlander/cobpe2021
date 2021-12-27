@@ -80,13 +80,8 @@ middlewareObj.parseInitialDatabase = function (data) {
 
 middlewareObj.parseSchedule = function(data, teamCount) {
 	var teamAssignments = [];
-	var courtNames = [];
-
-	for (i = 1; i++; i < 6) {
-		if (data[0][i].length > 0) {
-			courtNames.push(data[0][i]);
-		}
-	}
+	var courtNames = data[0];
+	console.log(courtNames);
 
 	for (i = 0; i < teamCount; i++) { teamAssignments.push("Team unassigned");	}
 

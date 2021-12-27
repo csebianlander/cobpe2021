@@ -94,8 +94,8 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 
 	data.forEach(function(row) {
 		rowTime = row.shift();
-		rowHour = rowTime.split(":")[0];
-		if (rowTime.endsWith("PM")) { rowHour = rowHour + 12; }
+		rowHour = parseInt(rowTime.split(":")[0]);
+		if (rowTime.endsWith("PM") && rowHour !== 12) { rowHour = rowHour + 12; }
 
 		console.log(rowHour);
 

@@ -135,9 +135,11 @@
                       <div class="metadata">
                         <span class="date"><%= note.timestamp %></span>
                         <span class="rating"> 
-                        <% for (i = 0; i < note.score; i++) { %>
-                          <i class="yellow star icon"></i>
-                        <% } %>
+	                      <% for (i = 0; i < (note.score / 2); i++) { %>
+  	                      <i class="yellow star icon"></i>
+    	                  <% } if (note.score % 2 !== 0) { %>
+    	                  	<i class="yellow star half icon"></i>
+    	                  <% } %>
                         </span>
                       </div>
                       <div class="text">

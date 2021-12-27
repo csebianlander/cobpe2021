@@ -21,6 +21,7 @@ var google = require('googleapis'),
 
 var parsedData = {},
 		teamCount = Number,
+        scheduleData = {},
 		SPREADSHEET_ID = "16zZGQ52pmZBLnoGfJ_KTIaWIMufPZCAhZe5gVVDqUDE";
 
 googleAuth.authorize()
@@ -28,14 +29,15 @@ googleAuth.authorize()
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F"],
+            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:E"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
                 return console.log(err);
             }
-						unparsedData = [response.valueRanges[0].values, response.valueRanges[1].values];
+			unparsedData = [response.valueRanges[0].values, response.valueRanges[1].values];
             parsedData = middleware.parseInitialDatabase(unparsedData);
+            scheduleData = middleware.parseSchedule(response.valueRanges[2].values);
             console.log("Database loaded.");
 						teamCount = middleware.determineTeamCount(parsedData);
         });
@@ -162,7 +164,7 @@ app.get("/refresh", middleware.isLoggedIn, function(req, res) {
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F"],
+            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:E"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);

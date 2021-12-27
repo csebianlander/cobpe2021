@@ -28,7 +28,7 @@ googleAuth.authorize()
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:E"],
+            ranges: ["Biographical!A:P", "Notes!A:F"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
@@ -118,15 +118,16 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newNote = {
 		range: "Notes",
 		majorDimension: "ROWS",
-		values: [[req.body.noteBallperson, req.user.username, noteDate, req.body.noteNote, scoreInteger]],
+		values: [[req.body.noteBallperson, req.user.username, noteDate, noteCategory, scoreInteger, req.body.noteNote]],
 	}
 	
 	var newPushNote = {
 		ballperson: newNote.values[0][0],
 		author: newNote.values[0][1],
 		timestamp: newNote.values[0][2],
-		note: newNote.values[0][3],
-    score: newNote.values[0][4]
+		category: newNote.values[0][3],
+        score: newNote.values[0][4],
+        note: newNote.values[0][5]
 	};
 	
 	googleAuth.authorize()
@@ -161,7 +162,7 @@ app.get("/refresh", middleware.isLoggedIn, function(req, res) {
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:E"],
+            ranges: ["Biographical!A:P", "Notes!A:F"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);

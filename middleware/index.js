@@ -82,7 +82,7 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 	var teamAssignments = [];
 	var courtNames = [];
 
-	for (i = 1; i++; i < data[0].length) {
+	for (i = 1; i++; i < 6) {
 		if (data[0][i]) {
 			courtNames.push(data[0][i]);
 		}

@@ -78,10 +78,24 @@ middlewareObj.parseInitialDatabase = function (data) {
 	return initialDatabase;
 }
 
-middlewareObj.parseSchedule = function(data) {
-	var parsedSchedule = data;
+middlewareObj.parseSchedule = function(data, teamCount) {
+	var teamAssignments = [];
+	var courtNames = [data[0][1], data[0][2], data[0][3], data[0][4]];
 
-	return parsedSchedule;
+	for (i = 0; i < teamCount; i++) { teamAssignments.push("Team unassigned");	}
+
+	data.forEach(function(row) {
+		rowTime = row.shift();
+		row.forEach(function(cell, location) {
+			if (cell) {
+				if (teamAssignments[cell - 1] === "Team unassigned") {
+					teamAssignments[cell - 1] = data[0][location] + " at " + rowTime;
+				}
+			}
+		});
+	});
+
+	return teamAssignments;
 }
 
 middlewareObj.determineTeamCount = function(data) {

@@ -118,7 +118,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newNote = {
 		range: "Notes",
 		majorDimension: "ROWS",
-		values: [[req.body.noteBallperson, req.user.username, noteDate, noteCategory, scoreInteger, req.body.noteNote]],
+		values: [[req.body.noteBallperson, req.user.username, noteDate, req.body.noteCategory, scoreInteger, req.body.noteNote]],
 	}
 	
 	var newPushNote = {

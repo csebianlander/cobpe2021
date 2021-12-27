@@ -29,7 +29,7 @@ googleAuth.authorize()
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:E"],
+            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:G"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
@@ -166,7 +166,7 @@ app.get("/refresh", middleware.isLoggedIn, function(req, res) {
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:E"],
+            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:G"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);

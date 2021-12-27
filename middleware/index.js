@@ -83,7 +83,7 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 	var teamAssignments = [];
 	var numFinder = /\d+/;
 
-	var currentHour = today.getHours();
+	var currentHour = today.getHours() - 5;
 
 
 	var currentMinutes = today.getMinutes();
@@ -94,15 +94,18 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 
 	data.forEach(function(row) {
 		rowTime = row.shift();
+		rowHour = rowTime.split(":")[0];
+		if (rowTime.endsWith("PM")) { rowHour = rowHour + 12; }
+
+		console.log(rowHour);
+
 		row.forEach(function(cell, location) {
 			if (cell) {
 				if (teamAssignments[cell - 1] === "Team unassigned") {
-					timeHour = rowTime.match(numFinder);
-					if (timeHour !== 12) { timeHour = timeHour + 12; }
-					if (currentHour === timeHour && currentMinutes <= 15) {
+					if (currentHour === rowHour && currentMinutes <= 15) {
 						teamAssignments[cell - 1] = data[0][location] + " at " + rowTime;
 					}
-					else if (currentHour < timeHour) {
+					else if (currentHour < rowHour) {
 						teamAssignments[cell - 1] = data[0][location] + " at " + rowTime;
 					}
 				}

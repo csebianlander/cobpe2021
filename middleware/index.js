@@ -70,7 +70,7 @@ middlewareObj.parseInitialDatabase = function (data) {
       }
     });
     
-    if (scoreCount > 0) { ballperson.averageScore = (scoreSum / scoreCount); }
+    if (scoreCount > 0) { ballperson.averageScore = ((scoreSum / scoreCount) / 2); }
     else { ballperson.averageScore = -1; }
     
   });

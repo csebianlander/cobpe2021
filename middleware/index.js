@@ -78,6 +78,12 @@ middlewareObj.parseInitialDatabase = function (data) {
 	return initialDatabase;
 }
 
+middlewareObj.parseSchedule = function(data) {
+	var parsedSchedule = data;
+
+	return parsedSchedule;
+}
+
 middlewareObj.determineTeamCount = function(data) {
 	var teamNumbers = [];
 	

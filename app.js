@@ -119,6 +119,10 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     var scoreInteger = parseInt(req.body.noteOverallScore);
 	console.log(noteDate);
 	
+    var stickerCheck = parseInt(req.body.sticker);
+
+    console.log(stickerCheck);
+
     var newNote = {
         range: "Notes",
         majorDimension: "ROWS",

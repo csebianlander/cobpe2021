@@ -183,23 +183,35 @@
 				<form class="ui form" action="/player/<%= database[id].ID %>" method="POST">
 					<div class="field">
 						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
-						<div class="ui selection dropdown">
+
+<!-- 						<div class="ui selection dropdown">
+
 							<input name="noteCategory" type="hidden">
 							<i class="dropdown icon"></i>
-							<div class="default text" data-value="Overall">Category (optional)</div>
+							<div class="default text">Category (optional)</div>
 							<div class="menu">
-								<div class="item" data-value="Overall">Overall</div>
 								<div class="item" data-value="Athleticism">Athleticism</div>
 								<div class="item" data-value="Rolling">Rolling</div>
 								<div class="item" data-value="Awareness">Awareness</div>
 								<div class="item" data-value="Decision-Making">Decision-Making</div>
 								<div class="item" data-value="Effort">Effort</div>
 							</div>
+
+						</div> -->
+
+						<div class="ui styled fluid accordion">
+							<div class="title">
+								<i class="plus icon"></i>
+								<div class="header">Category Scores</div>
+								Athleticism <div class="ui star rating" data-max-rating="5"></div>
+								Rolling <div class="ui star rating" data-max-rating="5"></div>
+							</div>
 						</div>
+
 						<div class="ui selection dropdown">
-              <input name="noteScore" type="hidden">
+              <input name="noteOverallScore" type="hidden">
               <i class="dropdown icon"></i>
-              <div class="default text" data-value="0">Score</div>
+              <div class="default text" data-value="0">Overall score</div>
               <div class="menu">
                 <div class="item" data-value="0">No score</div>
                 <div class="item" data-value="10"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>

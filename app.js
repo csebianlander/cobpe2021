@@ -116,7 +116,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	console.log (newDate);
   var estDate = moment(newDate).utcOffset(-240);
 	var noteDate = moment(estDate).format('dddd, MMMM D, h:mm a');
-  var scoreInteger = parseInt(req.body.noteScore);
+  var scoreInteger = parseInt(req.body.noteOverallScore);
 	console.log(noteDate);
 	
 	var newNote = {

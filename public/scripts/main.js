@@ -1,7 +1,9 @@
 $('.rating')
   .rating('setting', 'clearable', true)
-  
-   .rating({
+;
+
+$('.ui.rating')
+  .rating({
     initialRating: 0,
     maxRating: 5
   })

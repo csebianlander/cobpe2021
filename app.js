@@ -126,16 +126,20 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     }
 
     // Category-based scoring: check for category scores, create array of category + score, then send each
-    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisiveness", "Effort"]
-    var categoryScores = [req.body.ath, req.body.rol, req.body.awa, req.body.dec, req.body.eff];
+    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisiveness", "Effort"];
+    var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
+                             parseInt(req.body.dec), parseInt(req.body.eff)];
+
+    console.log(categoryScores);
+
     categoryScores.forEach(function(category, index) {
-        if (parseInt(category) > 0) {
+        if (category > 0) {
             var categoryNote = {
                 ballperson: newNote.values[0][0],
                 author: newNote.values[0][1],
                 timestamp: newNote.values[0][2],
                 category: categoryNames[index],
-                score: parseInt(category),
+                score: category,
                 note: newNote.values[0][5]
             }
 
@@ -147,7 +151,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
                         range: ["Notes"],
                                     valueInputOption: "RAW",
                                     insertDataOption: "INSERT_ROWS",
-                                    resource: newNote
+                                    resource: categoryNote
                     }, function (err, response) {
                         if (err) {
                             console.log('The API returned an error: ' + err);

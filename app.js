@@ -134,7 +134,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         note: newNote.values[0][5]
 	};
 	
-    if (newPushNote.note.length > 0) {
+    if (newPushNote.note.length > 0 || newPushNote.score.length > 0) {
     	googleAuth.authorize()
         .then((auth) => {
             sheetsApi.spreadsheets.values.append({

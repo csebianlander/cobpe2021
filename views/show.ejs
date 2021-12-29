@@ -184,45 +184,30 @@
 					<div class="field">
 						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
 
-<!-- 						<div class="ui selection dropdown">
-
-							<input name="noteCategory" type="hidden">
-							<i class="dropdown icon"></i>
-							<div class="default text">Category (optional)</div>
-							<div class="menu">
-								<div class="item" data-value="Athleticism">Athleticism</div>
-								<div class="item" data-value="Rolling">Rolling</div>
-								<div class="item" data-value="Awareness">Awareness</div>
-								<div class="item" data-value="Decision-Making">Decision-Making</div>
-								<div class="item" data-value="Effort">Effort</div>
-							</div>
-
-						</div> -->
-
 						<div class="ui grid">
 							<div class="eight wide column">
 								<div class="header">Athleticism </div>
-								<div name="athleticism" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
+								<div name="ath" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
 							</div>
 
 							<div class="eight wide column">
 								<div class="header">Rolling </div>
-								<div name="rolling" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
+								<div name="rol" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
 							</div>
 
 							<div class="eight wide column">
 								<div class="header">Awareness </div>
-								<div name="awareness" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
+								<div name="awa" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
 							</div>
 
 							<div class="eight wide column">
 								<div class="header">Decisiveness </div>
-								<div name="decisiveness" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
+								<div name="dec" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
 							</div>
 
 							<div class="eight wide column">
 								<div class="header">Effort </div>
-								<div name="effort" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
+								<div name="eff" class="ui large star rating" data-rating="0" data-max-rating="5"></div>
 							</div>																												
 						</div>
 

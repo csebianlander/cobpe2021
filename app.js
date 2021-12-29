@@ -125,6 +125,15 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
     }
 
+    var newPushNote = {
+        ballperson: newNote.values[0][0],
+        author: newNote.values[0][1],
+        timestamp: newNote.values[0][2],
+        category: newNote.values[0][3],
+        score: newNote.values[0][4],
+        note: newNote.values[0][5]
+    };
+
     // Category-based scoring: check for category scores, create array of category + score, then send each
     var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisions", "Effort"];
     var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
@@ -135,12 +144,12 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     categoryScores.forEach(function(category, index) {
         if (category > 0) {
             var categoryNote = {
-                ballperson: newNote.values[0][0],
-                author: newNote.values[0][1],
-                timestamp: newNote.values[0][2],
+                ballperson: newPushNote.ballperson,
+                author: newPushNote.author,
+                timestamp: newPushNote.timestamp,
                 category: categoryNames[index],
                 score: category,
-                note: newNote.values[0][5]
+                note: newPushNote.note
             }
 
             googleAuth.authorize()
@@ -166,15 +175,6 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
             parsedData[(req.params.id - 1)].notes.push(categoryNote);
         }
     })
-	
-	var newPushNote = {
-		ballperson: newNote.values[0][0],
-		author: newNote.values[0][1],
-		timestamp: newNote.values[0][2],
-		category: newNote.values[0][3],
-        score: newNote.values[0][4],
-        note: newNote.values[0][5]
-	};
 	
     if (newPushNote.note.length > 0 || newPushNote.score.length > 0) {
     	googleAuth.authorize()

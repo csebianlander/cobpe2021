@@ -223,9 +223,9 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         ];
 
         var stickerNote = {
-            ballperson: newPushNote.ballperson,
-            author: newPushNote.author,
-            timestamp: newPushNote.timestamp,
+            ballperson: req.body.noteBallperson,
+            author: req.user.username,
+            timestamp: noteDate,
             category: stickerValues[s][0],
             score: stickerValues[s][1],
             note: stickerValues[s][2]

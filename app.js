@@ -122,7 +122,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newNote = {
 		range: "Notes",
 		majorDimension: "ROWS",
-		values: [[req.body.noteBallperson, req.user.username, noteDate, req.body.noteCategory, scoreInteger, req.body.noteNote]],
+		values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
 	}
 	
 	var newPushNote = {
@@ -134,27 +134,31 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         note: newNote.values[0][5]
 	};
 	
-	googleAuth.authorize()
-    .then((auth) => {
-        sheetsApi.spreadsheets.values.append({
-            auth: auth,
-            spreadsheetId: SPREADSHEET_ID,
-            range: ["Notes"],
-						valueInputOption: "RAW",
-						insertDataOption: "INSERT_ROWS",
-						resource: newNote
-        }, function (err, response) {
-            if (err) {
-                console.log('The API returned an error: ' + err);
-                return console.log(err);
-            }
+    if (newPushNote[score].length > 0) {
+    	googleAuth.authorize()
+        .then((auth) => {
+            sheetsApi.spreadsheets.values.append({
+                auth: auth,
+                spreadsheetId: SPREADSHEET_ID,
+                range: ["Notes"],
+    						valueInputOption: "RAW",
+    						insertDataOption: "INSERT_ROWS",
+    						resource: newNote
+            }, function (err, response) {
+                if (err) {
+                    console.log('The API returned an error: ' + err);
+                    return console.log(err);
+                }
+            });
+        })
+        .catch((err) => {
+            console.log('auth error', err);
         });
-    })
-    .catch((err) => {
-        console.log('auth error', err);
-    });
+
+        parsedData[(req.params.id - 1)].notes.push(newPushNote);
+	}
+
 	
-	parsedData[(req.params.id - 1)].notes.push(newPushNote);
 	
 	res.redirect("back");
 })

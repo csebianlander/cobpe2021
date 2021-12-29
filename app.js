@@ -123,94 +123,100 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 
     console.log(stickerCheck);
 
-    var newNote = {
-        range: "Notes",
-        majorDimension: "ROWS",
-        values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
-    };
+    if (stickerCheck === 0) {
+        var newNote = {
+            range: "Notes",
+            majorDimension: "ROWS",
+            values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
+        };
 
-    var newPushNote = {
-        ballperson: newNote.values[0][0],
-        author: newNote.values[0][1],
-        timestamp: newNote.values[0][2],
-        category: newNote.values[0][3],
-        score: newNote.values[0][4],
-        note: newNote.values[0][5]
-    };
+        var newPushNote = {
+            ballperson: newNote.values[0][0],
+            author: newNote.values[0][1],
+            timestamp: newNote.values[0][2],
+            category: newNote.values[0][3],
+            score: newNote.values[0][4],
+            note: newNote.values[0][5]
+        };
 
-    // Category-based scoring: check for category scores, create array of category + score, then send each
-    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisionmaking", "Effort"];
-    var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
-                             parseInt(req.body.dec), parseInt(req.body.eff)];
+        // Category-based scoring: check for category scores, create array of category + score, then send each
+        var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisionmaking", "Effort"];
+        var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
+                                 parseInt(req.body.dec), parseInt(req.body.eff)];
 
-    console.log(categoryScores);
+        console.log(categoryScores);
 
-    categoryScores.forEach(function(category, index) {
-        if (category > 0) {
-            var categoryNote = {
-                ballperson: newPushNote.ballperson,
-                author: newPushNote.author,
-                timestamp: newPushNote.timestamp,
-                category: categoryNames[index],
-                score: category,
-                note: newPushNote.note
-            };
+        categoryScores.forEach(function(category, index) {
+            if (category > 0) {
+                var categoryNote = {
+                    ballperson: newPushNote.ballperson,
+                    author: newPushNote.author,
+                    timestamp: newPushNote.timestamp,
+                    category: categoryNames[index],
+                    score: category,
+                    note: newPushNote.note
+                };
 
-            var catNoteSend = {
-                range: "Notes",
-                majorDimension: "ROWS",
-                values: [[categoryNote.ballperson, categoryNote.author, categoryNote.timestamp,
-                            categoryNote.category, categoryNote.score, categoryNote.note]],
-            };
+                var catNoteSend = {
+                    range: "Notes",
+                    majorDimension: "ROWS",
+                    values: [[categoryNote.ballperson, categoryNote.author, categoryNote.timestamp,
+                                categoryNote.category, categoryNote.score, categoryNote.note]],
+                };
 
 
-            googleAuth.authorize()
-                .then((auth) => {
-                    sheetsApi.spreadsheets.values.append({
-                        auth: auth,
-                        spreadsheetId: SPREADSHEET_ID,
-                        range: ["Notes"],
-                                    valueInputOption: "RAW",
-                                    insertDataOption: "INSERT_ROWS",
-                                    resource: catNoteSend
-                    }, function (err, response) {
-                        if (err) {
-                            console.log('The API returned an error: ' + err);
-                            return console.log(err);
-                        }
+                googleAuth.authorize()
+                    .then((auth) => {
+                        sheetsApi.spreadsheets.values.append({
+                            auth: auth,
+                            spreadsheetId: SPREADSHEET_ID,
+                            range: ["Notes"],
+                                        valueInputOption: "RAW",
+                                        insertDataOption: "INSERT_ROWS",
+                                        resource: catNoteSend
+                        }, function (err, response) {
+                            if (err) {
+                                console.log('The API returned an error: ' + err);
+                                return console.log(err);
+                            }
+                        });
+                    })
+                    .catch((err) => {
+                        console.log('auth error', err);
                     });
-                })
-                .catch((err) => {
-                    console.log('auth error', err);
-                });
 
-            parsedData[(req.params.id - 1)].notes.push(categoryNote);
-        }
-    })
-	
-    if (newPushNote.note.length > 0 || newPushNote.score.length > 0) {
-    	googleAuth.authorize()
-        .then((auth) => {
-            sheetsApi.spreadsheets.values.append({
-                auth: auth,
-                spreadsheetId: SPREADSHEET_ID,
-                range: ["Notes"],
-    						valueInputOption: "RAW",
-    						insertDataOption: "INSERT_ROWS",
-    						resource: newNote
-            }, function (err, response) {
-                if (err) {
-                    console.log('The API returned an error: ' + err);
-                    return console.log(err);
-                }
-            });
+                parsedData[(req.params.id - 1)].notes.push(categoryNote);
+            }
         })
-        .catch((err) => {
-            console.log('auth error', err);
-        });
+    	
+        if (newPushNote.note.length > 0 || newPushNote.score.length > 0) {
+        	googleAuth.authorize()
+            .then((auth) => {
+                sheetsApi.spreadsheets.values.append({
+                    auth: auth,
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: ["Notes"],
+        						valueInputOption: "RAW",
+        						insertDataOption: "INSERT_ROWS",
+        						resource: newNote
+                }, function (err, response) {
+                    if (err) {
+                        console.log('The API returned an error: ' + err);
+                        return console.log(err);
+                    }
+                });
+            })
+            .catch((err) => {
+                console.log('auth error', err);
+            });
 
-        parsedData[(req.params.id - 1)].notes.push(newPushNote);
-	}
+            parsedData[(req.params.id - 1)].notes.push(newPushNote);
+    	}
+    }
+
+    else {
+        console.log ("Submitted sticker " + stickerCheck);
+    }
 
 	
 	

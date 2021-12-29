@@ -114,16 +114,54 @@ app.use("/", authRoutes);
 app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newDate = new Date();
 	console.log (newDate);
-  var estDate = moment(newDate).utcOffset(-240);
+    var estDate = moment(newDate).utcOffset(-240);
 	var noteDate = moment(estDate).format('dddd, MMMM D, h:mm a');
-  var scoreInteger = parseInt(req.body.noteOverallScore);
+    var scoreInteger = parseInt(req.body.noteOverallScore);
 	console.log(noteDate);
 	
-	var newNote = {
-		range: "Notes",
-		majorDimension: "ROWS",
-		values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
-	}
+    var newNote = {
+        range: "Notes",
+        majorDimension: "ROWS",
+        values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
+    }
+
+    // Category-based scoring: check for category scores, create array of category + score, then send each
+    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisiveness", "Effort"]
+    var categoryScores = [req.body.ath, req.body.rol, req.body.awa, req.body.dec, req.body.eff];
+    categoryScores.forEach(function(category, index) {
+        if (parseInt(category) > 0) {
+            var categoryNote = {
+                ballperson: newNote.values[0][0],
+                author: newNote.values[0][1],
+                timestamp: newNote.values[0][2],
+                category: categoryNames[index],
+                score: parseInt(category),
+                note: newNote.values[0][5]
+            }
+
+            googleAuth.authorize()
+                .then((auth) => {
+                    sheetsApi.spreadsheets.values.append({
+                        auth: auth,
+                        spreadsheetId: SPREADSHEET_ID,
+                        range: ["Notes"],
+                                    valueInputOption: "RAW",
+                                    insertDataOption: "INSERT_ROWS",
+                                    resource: newNote
+                    }, function (err, response) {
+                        if (err) {
+                            console.log('The API returned an error: ' + err);
+                            return console.log(err);
+                        }
+                    });
+                })
+                .catch((err) => {
+                    console.log('auth error', err);
+                });
+
+            parsedData[(req.params.id - 1)].notes.push(categoryNote);
+        }
+    })
 	
 	var newPushNote = {
 		ballperson: newNote.values[0][0],

@@ -335,9 +335,15 @@
 			</div>
       <div class="content">
       		<form class="ui form" action="/player/<%= database[id].ID %>" method="POST">
-					<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
-					<input type="hidden" name="sticker" value="1">
-        	<button class="ui green button" type="submit">Great job! <i class="thumbs up outline icon"></i></button>
+						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
+						<input type="hidden" name="sticker" value="1">
+	        	<button class="ui green button" type="submit">Great job! <i class="thumbs up outline icon"></i></button>
+      		</form>
+
+      		<form class="ui form" action="/player/<%= database[id].ID %>" method="POST">
+						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
+						<input type="hidden" name="sticker" value="2">
+	        	<button class="ui red button" type="submit">Terrible job! <i class="thumbs down outline icon"></i></button>
       		</form>
       </div>
       <% } %>

@@ -215,7 +215,53 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     }
 
     else {
-        console.log ("Submitted sticker " + stickerCheck);
+        var s = stickerCheck - 1;
+
+        stickerValues = [
+        ["Overall", 10, "Great job!"],
+        ["Overall", 2, "Terrible job!"]
+        ];
+
+        var stickerNote = {
+            ballperson: newPushNote.ballperson,
+            author: newPushNote.author,
+            timestamp: newPushNote.timestamp,
+            category: stickerValues[s][0],
+            score: stickerValues[s][1],
+            note: stickerValues[s][2]
+        };
+
+        var stkNoteSend = {
+            range: "Notes",
+            majorDimension: "ROWS",
+            values: [[stickerNote.ballperson, stickerNote.author, stickerNote.timestamp,
+                        stickerNote.category, stickerNote.score, stickerNote.note]],
+        };
+
+
+        googleAuth.authorize()
+            .then((auth) => {
+                sheetsApi.spreadsheets.values.append({
+                    auth: auth,
+                    spreadsheetId: SPREADSHEET_ID,
+                    range: ["Notes"],
+                                valueInputOption: "RAW",
+                                insertDataOption: "INSERT_ROWS",
+                                resource: stkNoteSend
+                }, function (err, response) {
+                    if (err) {
+                        console.log('The API returned an error: ' + err);
+                        return console.log(err);
+                    }
+                });
+            })
+            .catch((err) => {
+                console.log('auth error', err);
+            });
+
+        parsedData[(req.params.id - 1)].notes.push(stickerNote);
+
+
     }
 
 	

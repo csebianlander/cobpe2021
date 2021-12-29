@@ -126,7 +126,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     }
 
     // Category-based scoring: check for category scores, create array of category + score, then send each
-    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisiveness", "Effort"];
+    var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisions", "Effort"];
     var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
                              parseInt(req.body.dec), parseInt(req.body.eff)];
 

@@ -185,6 +185,29 @@
 						<input class="hidden" type="text" name="noteBallperson" value="<%= database[id].firstName + " " + database[id].lastName %>">
 
 						<div class="ui grid">
+
+							<div class="eight wide column">
+								<div class="header"><strong>Overall</strong></div>
+								<div class="ui selection dropdown">
+		            	<input name="noteOverallScore" type="hidden">
+		            	<i class="dropdown icon"></i>
+		            	<div class="default text" data-value="0">Score</div>
+		              <div class="menu">
+		                <div class="item" data-value="0">No score</div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
+		              </div>
+		            </div>
+							</div>
+
 							<div class="eight wide column">
 								<div class="header">Athleticism</div>
 								<div class="ui selection dropdown">
@@ -193,16 +216,16 @@
 		            	<div class="default text" data-value="0">Score</div>
 		              <div class="menu">
 		                <div class="item" data-value="0">No score</div>
-		                <div class="item" data-value="10"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="9"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="8"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="7"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="6"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="5"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="4"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="3"><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="2"><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="1"><i class="mini yellow star half icon"></i></div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
 		              </div>
 		            </div>
 							</div>
@@ -215,16 +238,16 @@
 		            	<div class="default text" data-value="0">Score</div>
 		              <div class="menu">
 		                <div class="item" data-value="0">No score</div>
-		                <div class="item" data-value="10"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="9"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="8"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="7"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="6"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="5"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="4"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="3"><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="2"><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="1"><i class="mini yellow star half icon"></i></div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
 		              </div>
 		            </div>
 							</div>
@@ -237,16 +260,16 @@
 		            	<div class="default text" data-value="0">Score</div>
 		              <div class="menu">
 		                <div class="item" data-value="0">No score</div>
-		                <div class="item" data-value="10"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="9"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="8"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="7"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="6"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="5"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="4"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="3"><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="2"><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="1"><i class="mini yellow star half icon"></i></div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
 		              </div>
 		            </div>
 							</div>
@@ -259,16 +282,16 @@
 		            	<div class="default text" data-value="0">Score</div>
 		              <div class="menu">
 		                <div class="item" data-value="0">No score</div>
-		                <div class="item" data-value="10"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="9"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="8"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="7"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="6"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="5"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="4"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="3"><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="2"><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="1"><i class="mini yellow star half icon"></i></div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
 		              </div>
 		            </div>
 							</div>
@@ -281,16 +304,16 @@
 		            	<div class="default text" data-value="0">Score</div>
 		              <div class="menu">
 		                <div class="item" data-value="0">No score</div>
-		                <div class="item" data-value="10"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="9"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="8"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="7"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="6"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="5"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="4"><i class="mini yellow star icon"></i><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="3"><i class="mini yellow star icon"></i><i class="mini yellow star half icon"></i></div>
-		                <div class="item" data-value="2"><i class="mini yellow star icon"></i></div>
-		                <div class="item" data-value="1"><i class="mini yellow star half icon"></i></div>
+		                <div class="item" data-value="10"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="tiny yellow star icon"></i><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="tiny yellow star icon"></i><i class="tiny yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="tiny yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="tiny yellow star half icon"></i></div>
 		              </div>
 		            </div>
 							</div>
@@ -298,25 +321,6 @@
 						</div>
 
 						<br />
-
-						<div class="ui selection dropdown">
-              <input name="noteOverallScore" type="hidden">
-              <i class="dropdown icon"></i>
-              <div class="default text" data-value="0">Overall score</div>
-              <div class="menu">
-                <div class="item" data-value="0">No score</div>
-                <div class="item" data-value="10"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
-                <div class="item" data-value="9"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
-                <div class="item" data-value="8"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
-                <div class="item" data-value="7"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
-                <div class="item" data-value="6"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
-                <div class="item" data-value="5"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
-                <div class="item" data-value="4"><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
-                <div class="item" data-value="3"><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
-                <div class="item" data-value="2"><i class="yellow star icon"></i></div>
-                <div class="item" data-value="1"><i class="yellow star half icon"></i></div>
-              </div>
-            </div>
 
             <textarea name="noteNote"></textarea>
 						<button class="ui fluid green bottom attached button" type="submit">Submit</button>

@@ -152,6 +152,13 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
                 note: newPushNote.note
             }
 
+            var catNoteSend = {
+                range: "Notes",
+                majorDimension: "ROWS",
+                values: [[categoryNote[0], categoryNote[1], categoryNote[2], categoryNote[3], categoryNote[4], categoryNote[5]]],
+            }
+
+
             googleAuth.authorize()
                 .then((auth) => {
                     sheetsApi.spreadsheets.values.append({
@@ -160,7 +167,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
                         range: ["Notes"],
                                     valueInputOption: "RAW",
                                     insertDataOption: "INSERT_ROWS",
-                                    resource: categoryNote
+                                    resource: catNoteSend
                     }, function (err, response) {
                         if (err) {
                             console.log('The API returned an error: ' + err);

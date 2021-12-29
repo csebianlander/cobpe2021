@@ -1,5 +1,10 @@
 $('.rating')
   .rating('setting', 'clearable', true)
+  
+   .rating({
+    initialRating: 0,
+    maxRating: 5
+  })
 ;
 
 $('.ui.accordion')

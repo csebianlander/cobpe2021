@@ -130,7 +130,6 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
                              parseInt(req.body.dec), parseInt(req.body.eff)];
 
-    console.log(req.body.ath);
     console.log(categoryScores);
 
     categoryScores.forEach(function(category, index) {

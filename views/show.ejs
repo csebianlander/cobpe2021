@@ -187,9 +187,24 @@
 						<div class="ui grid">
 							<div class="eight wide column">
 								<div class="header">Athleticism</div>
-								<div data-value="0" data-rating="0" data-max-rating="5" class="ui large star rating">
-									<input type="hidden" name="ath">
-								</div>
+								<div class="ui compact selection dropdown">
+		              <input name="ath" type="hidden">
+		              <i class="dropdown icon"></i>
+		              <div class="default text" data-value="0">Score</div>
+		              <div class="menu">
+		                <div class="item" data-value="0">No score</div>
+		                <div class="item" data-value="10"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+		                <div class="item" data-value="9"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
+		                <div class="item" data-value="8"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+		                <div class="item" data-value="7"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
+		                <div class="item" data-value="6"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+		                <div class="item" data-value="5"><i class="yellow star icon"></i><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
+		                <div class="item" data-value="4"><i class="yellow star icon"></i><i class="yellow star icon"></i></div>
+		                <div class="item" data-value="3"><i class="yellow star icon"></i><i class="yellow star half icon"></i></div>
+		                <div class="item" data-value="2"><i class="yellow star icon"></i></div>
+		                <div class="item" data-value="1"><i class="yellow star half icon"></i></div>
+		              </div>
+		            </div>
 							</div>
 
 							<div class="eight wide column">

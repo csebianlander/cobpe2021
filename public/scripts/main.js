@@ -1,3 +1,7 @@
+$('.rating')
+  .rating('setting', 'clearable', true)
+;
+
 $('.ui.accordion')
 	.accordion()
 ;

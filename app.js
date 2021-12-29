@@ -123,7 +123,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         range: "Notes",
         majorDimension: "ROWS",
         values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
-    }
+    };
 
     var newPushNote = {
         ballperson: newNote.values[0][0],
@@ -150,13 +150,14 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
                 category: categoryNames[index],
                 score: category,
                 note: newPushNote.note
-            }
+            };
 
             var catNoteSend = {
                 range: "Notes",
                 majorDimension: "ROWS",
-                values: [[categoryNote[0], categoryNote[1], categoryNote[2], categoryNote[3], categoryNote[4], categoryNote[5]]],
-            }
+                values: [[categoryNote.ballperson, categoryNote.author, categoryNote.timestamp,
+                            categoryNote.category, categoryNote.score, categoryNote.note]],
+            };
 
 
             googleAuth.authorize()

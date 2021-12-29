@@ -2,13 +2,6 @@ $('.rating')
   .rating('setting', 'clearable', true)
 ;
 
-$('.ui.rating')
-  .rating({
-    initialRating: 0,
-    maxRating: 5
-  })
-;
-
 $('.ui.accordion')
 	.accordion()
 ;

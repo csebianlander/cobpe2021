@@ -134,6 +134,8 @@
                       <a class="author"><%= note.author %></a>
                       <div class="metadata">
                         <span class="date"><%= note.timestamp %></span>
+                      </div>
+                      <div class="header">
                         <span class="rating"> 
                         <strong><%= note.category %>:</strong>
 	                      <% for (i = 0; i < Math.trunc(note.score / 2); i++) { %>

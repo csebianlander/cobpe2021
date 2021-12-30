@@ -135,6 +135,7 @@
                       <div class="metadata">
                         <span class="date"><%= note.timestamp %></span>
                         <span class="rating"> 
+                        <strong><%= note.category %>:</strong>
 	                      <% for (i = 0; i < Math.trunc(note.score / 2); i++) { %>
   	                      <i class="yellow star icon"></i>
     	                  <% } if (note.score % 2 !== 0) { %>
@@ -157,7 +158,8 @@
                     <a class="author"><%= note.author %></a>
                     <div class="metadata">
                       <span class="date"><%= note.timestamp %></span>
-                      <span class="rating"> 
+                      <span class="rating">
+                      	<strong><%= note.category %>:</strong> 
 	                      <% for (i = 0; i < Math.trunc(note.score / 2); i++) { %>
   	                      <i class="yellow star icon"></i>
     	                  <% } if (note.score % 2 !== 0) { %>
@@ -166,7 +168,7 @@
                       </span>
                     </div>
                     <div class="text">
-                      <%= note.note %> <em>(<%= note.category %>)</em>
+                      <%= note.note %>
                     </div>
                   </div>
                 <% }); %>

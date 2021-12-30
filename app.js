@@ -218,8 +218,18 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         var s = stickerCheck - 1;
 
         stickerValues = [
-        ["Overall", 10, "Great job!"],
-        ["Overall", 2, "Terrible job!"]
+        ["Rolling", 10, "Great rolls"],
+        ["Rolling", 2, "Poor rolls"],
+        ["Athleticism", 10, "Great hands"],
+        ["Athleticism", 2, "Poor hands"],
+        ["Athleticism", 10, "Great speed"],
+        ["Athleticism", 2, "Poor speed"],
+        ["Effort", 10, "Great attitude"],
+        ["Effort", 2, "Poor attitude"],
+        ["Awareness", 10, "Great awareness"],
+        ["Awareness", 2, "Poor awareness"],
+        ["Effort", 10, "Great effort"],
+        ["Effort", 2, "Poor effort"],
         ];
 
         var stickerNote = {

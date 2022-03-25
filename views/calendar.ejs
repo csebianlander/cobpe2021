@@ -6,7 +6,7 @@
     <th>Time and Place</th>
   </tr></thead>
   <tbody>
-    <% schedule.forEach(function(assignment, team) { %>
+    <% schedule.forEach(function(assignment, team)) { %>
     <tr>
       <td data-label="Team"> <%= team + 1 %> </td>
       <td data-label="Time and Place"> <%= assignment %> </td>

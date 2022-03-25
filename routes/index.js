@@ -30,4 +30,9 @@ router.get("/reset-teams", middleware.isLoggedIn, function(req, res) {
 	res.render("reset-teams");
 });
 
+// CALENDAR ROUTE
+router.get("/calendar", function(req, res) {
+	res.render("calendar");
+});
+
 module.exports = router;

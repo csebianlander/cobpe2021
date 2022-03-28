@@ -3,7 +3,7 @@
 <h1 class="ui header">Current Schedule</h1>
 
 <div class="content">
-  <table class="ui sortable celled unstackable table">
+  <table id="calendar" class="ui collapsing sortable celled unstackable table">
     <thead><tr>
       <% calendar[0].forEach(function(cell) { %>
         <th><%= cell %></th>
@@ -25,5 +25,7 @@
 
 <script src="/scripts/jquery.js">
 <script src="/scripts/tablesort.js">
+
+<script> $('table').tablesort() </script>
 
 <% include ./partials/foot %>

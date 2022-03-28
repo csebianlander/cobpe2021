@@ -38,8 +38,8 @@ googleAuth.authorize()
 			unparsedData = [response.valueRanges[0].values, response.valueRanges[1].values];
             parsedData = middleware.parseInitialDatabase(unparsedData);
 			teamCount = middleware.determineTeamCount(parsedData);
-            scheduleData = middleware.parseSchedule(response.valueRanges[2].values, teamCount);
             calendarData = middleware.parseCalendar(response.valueRanges[2].values);
+            scheduleData = middleware.parseSchedule(response.valueRanges[2].values, teamCount);
             console.log("Database loaded.");
         });
     })

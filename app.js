@@ -39,8 +39,8 @@ googleAuth.authorize()
             parsedData = middleware.parseInitialDatabase(unparsedData);
 			teamCount = middleware.determineTeamCount(parsedData);
             scheduleData = middleware.parseSchedule(response.valueRanges[2].values, teamCount);
+            calendarData = middleware.parseCalendar(response.valueRanges[2].values, teamCount);
             console.log("Database loaded.");
-            console.log(scheduleData);
         });
     })
     .catch((err) => {
@@ -100,6 +100,7 @@ app.use(function(req, res, next){
 	res.locals.database = parsedData;
     res.locals.schedule = scheduleData;
 	res.locals.teamCount = teamCount;
+    res.locals.calendar = calendarData;
   next();
 });  
 

@@ -78,7 +78,19 @@ middlewareObj.parseInitialDatabase = function (data) {
 	return initialDatabase;
 }
 
+middlewareObj.parseCalendar = function(data, teamCount) {
+	// The calendar is the FULL dataset from the Schedule tab.
+	// Used for the calendar view.
+
+	table = [];
+
+	return table;
+}
+
 middlewareObj.parseSchedule = function(data, teamCount) {
+	// The schedule is the FILTERED data of immediate team assignments.
+	// Used for ballperson and team views.
+
 	var today = new Date();
 	var teamAssignments = [];
 

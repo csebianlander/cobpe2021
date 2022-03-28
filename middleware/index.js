@@ -84,6 +84,10 @@ middlewareObj.parseCalendar = function(data, teamCount) {
 
 	table = [];
 
+	data.forEach(function(row)) {
+		table.push(row);
+	}
+
 	return table;
 }
 

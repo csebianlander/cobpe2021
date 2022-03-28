@@ -78,7 +78,7 @@ middlewareObj.parseInitialDatabase = function (data) {
 	return initialDatabase;
 }
 
-middlewareObj.parseCalendar = function(data, teamCount) {
+middlewareObj.parseCalendar = function(data) {
 	// The calendar is the FULL dataset from the Schedule tab.
 	// Used for the calendar view.
 
@@ -86,6 +86,7 @@ middlewareObj.parseCalendar = function(data, teamCount) {
 
 	data.forEach(function(row) {
 		table.push(row);
+		console.log(row);
 	});
 
 	return table;

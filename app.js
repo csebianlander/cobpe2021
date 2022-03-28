@@ -39,6 +39,8 @@ googleAuth.authorize()
             parsedData = middleware.parseInitialDatabase(unparsedData);
 			teamCount = middleware.determineTeamCount(parsedData);
             calendarData = middleware.parseCalendar(response.valueRanges[2].values);
+            console.log(calendarData);
+            
             scheduleData = middleware.parseSchedule(response.valueRanges[2].values, teamCount);
             console.log(calendarData);
             console.log("Database loaded.");

@@ -86,7 +86,6 @@ middlewareObj.parseCalendar = function(data) {
 
 	data.forEach(function(row) {
 		table.push(row);
-		console.log(row);
 	});
 
 	return table;

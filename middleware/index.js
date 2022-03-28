@@ -111,7 +111,7 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 	for (i = 0; i < teamCount; i++) { teamAssignments.push("Not scheduled");	}
 
 	data.forEach(function(row) {
-		rowTime = row.shift();
+		rowTime = row[0];
 
 		if (rowTime === "12:00 AM") { rowHour = 24; } else {
 			rowHour = parseInt(rowTime.split(":")[0]);
@@ -121,7 +121,7 @@ middlewareObj.parseSchedule = function(data, teamCount) {
 		console.log(rowHour);
 
 		row.forEach(function(cell, location) {
-			if (cell) {
+			if (cell && location !== 0) {
 				if (teamAssignments[cell - 1] === "Not scheduled") {
 					if (currentHour === rowHour && currentMinutes <= 15) {
 						teamAssignments[cell - 1] = data[0][location] + " at " + rowTime;

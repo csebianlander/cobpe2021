@@ -136,12 +136,54 @@
                         <span class="date"><%= note.timestamp %></span>
                       </div>
                       <div class="header">
-                        <span class="rating"> 
-                        <strong><%= note.category %>:</strong>
-	                      <% for (i = 0; i < Math.trunc(note.score / 2); i++) { %>
-  	                      <i class="yellow star icon"></i>
-    	                  <% } if (note.score % 2 !== 0) { %>
-    	                  	<i class="yellow star half icon"></i>
+                        <span class="rating">
+                        <% if (note.scoreOverall > 0) { %> 
+                        	<strong>Overall:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreOverall / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreOverall % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreAthleticism > 0) { %> 
+                        	<br /><strong>Athleticism:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreAthleticism / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreAthleticism % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreRolling > 0) { %> 
+                        	<br /><strong>Rolling:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreRolling / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreRolling % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreAwareness > 0) { %> 
+                        	<br /><strong>Awareness:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreAwareness / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreAwareness % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreDecisionmaking > 0) { %> 
+                        	<br /><strong>Decisionmaking:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreDecisionmaking / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreDecisionmaking % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreEffort > 0) { %> 
+                        	<br /><strong>Effort:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreEffort / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreEffort % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
     	                  <% } %>
                         </span>
                       </div>
@@ -162,14 +204,56 @@
                       <span class="date"><%= note.timestamp %></span>
                     </div>
                     <div class="header">
-                      <span class="rating">
-                      	<strong><%= note.category %>:</strong> 
-	                      <% for (i = 0; i < Math.trunc(note.score / 2); i++) { %>
-  	                      <i class="yellow star icon"></i>
-    	                  <% } if (note.score % 2 !== 0) { %>
-    	                  	<i class="yellow star half icon"></i>
+                        <span class="rating">
+                        <% if (note.scoreOverall > 0) { %> 
+                        	<strong>Overall:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreOverall / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreOverall % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
     	                  <% } %>
-                      </span>
+                        <% if (note.scoreAthleticism > 0) { %> 
+                        	<br /><strong>Athleticism:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreAthleticism / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreAthleticism % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreRolling > 0) { %> 
+                        	<br /><strong>Rolling:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreRolling / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreRolling % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreAwareness > 0) { %> 
+                        	<br /><strong>Awareness:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreAwareness / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreAwareness % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreDecisionmaking > 0) { %> 
+                        	<br /><strong>Decisionmaking:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreDecisionmaking / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreDecisionmaking % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        <% if (note.scoreEffort > 0) { %> 
+                        	<br /><strong>Effort:</strong>
+	                      	<% for (i = 0; i < Math.trunc(note.scoreEffort / 2); i++) { %>
+  	                      	<i class="yellow star icon"></i>
+    	                  	<% } if (note.scoreEffort % 2 !== 0) { %>
+    	                  		<i class="yellow star half icon"></i>
+    	                  	<% } %>
+    	                  <% } %>
+                        </span>
                     </div>
                     <div class="text">
                       <%= note.note %>

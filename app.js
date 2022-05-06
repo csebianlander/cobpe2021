@@ -29,7 +29,7 @@ googleAuth.authorize()
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:G"],
+            ranges: ["Biographical!A:P", "Notes!A:J", "Schedule!A:G"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);
@@ -99,12 +99,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
-  res.locals.currentUser = req.user;  //adds current user info to all templates
-	res.locals.database = parsedData;
+    res.locals.currentUser = req.user;  //adds current user info to all templates
+    res.locals.database = parsedData;
     res.locals.schedule = scheduleData;
 	res.locals.teamCount = teamCount;
     res.locals.calendar = calendarData;
-  next();
+    next();
 });  
 
 // USE ROUTES
@@ -120,80 +120,58 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	console.log (newDate);
     var estDate = moment(newDate).utcOffset(-240);
 	var noteDate = moment(estDate).format('dddd, MMMM D, h:mm a');
-    var scoreInteger = parseInt(req.body.noteOverallScore);
 	console.log(noteDate);
 	
     var stickerCheck = parseInt(req.body.sticker);
-
     console.log(stickerCheck);
+
+    var scoreOverallInt = parseInt(req.body.noteOverallScore);
+    var scoreAthInt = parseInt(req.body.ath);
+    var scoreRolInt = parseInt(req.body.rol);
+    var scoreAwaInt = parseInt(req.body.awa);
+    var scoreDecInt = parseInt(req.body.dec);
+    var scoreEffInt = parseInt(req.body.eff);
 
     if (stickerCheck === 0) {
         var newNote = {
             range: "Notes",
             majorDimension: "ROWS",
-            values: [[req.body.noteBallperson, req.user.username, noteDate, "Overall", scoreInteger, req.body.noteNote]],
+            values: [[
+                req.body.noteBallperson,
+                req.user.username,
+                noteDate,
+                req.body.noteNote,
+                scoreOverallInt,
+                scoreAthInt,
+                scoreRolInt,
+                scoreAwaInt,
+                scoreDecInt,
+                scoreEffInt
+            ]],
         };
 
         var newPushNote = {
             ballperson: newNote.values[0][0],
             author: newNote.values[0][1],
             timestamp: newNote.values[0][2],
-            category: newNote.values[0][3],
-            score: newNote.values[0][4],
-            note: newNote.values[0][5]
+            note: newNote.values[0][3],
+            scoreOverall: newNote.values[0][4],
+            scoreAthleticism: newNote.values[0][5],
+            scoreRolling: newNote.values[0][6],
+            scoreAwareness: newNote.values[0][7],
+            scoreDecisionmaking: newNote.values[0][8],
+            scoreEffort: newNote.values[0][9],
         };
 
-        // Category-based scoring: check for category scores, create array of category + score, then send each
-        var categoryNames = ["Athleticism", "Rolling", "Awareness", "Decisionmaking", "Effort"];
-        var categoryScores = [parseInt(req.body.ath), parseInt(req.body.rol), parseInt(req.body.awa),
-                                 parseInt(req.body.dec), parseInt(req.body.eff)];
-
-        console.log(categoryScores);
-
-        categoryScores.forEach(function(category, index) {
-            if (category > 0) {
-                var categoryNote = {
-                    ballperson: newPushNote.ballperson,
-                    author: newPushNote.author,
-                    timestamp: newPushNote.timestamp,
-                    category: categoryNames[index],
-                    score: category,
-                    note: newPushNote.note
-                };
-
-                var catNoteSend = {
-                    range: "Notes",
-                    majorDimension: "ROWS",
-                    values: [[categoryNote.ballperson, categoryNote.author, categoryNote.timestamp,
-                                categoryNote.category, categoryNote.score, categoryNote.note]],
-                };
-
-
-                googleAuth.authorize()
-                    .then((auth) => {
-                        sheetsApi.spreadsheets.values.append({
-                            auth: auth,
-                            spreadsheetId: SPREADSHEET_ID,
-                            range: ["Notes"],
-                                        valueInputOption: "RAW",
-                                        insertDataOption: "INSERT_ROWS",
-                                        resource: catNoteSend
-                        }, function (err, response) {
-                            if (err) {
-                                console.log('The API returned an error: ' + err);
-                                return console.log(err);
-                            }
-                        });
-                    })
-                    .catch((err) => {
-                        console.log('auth error', err);
-                    });
-
-                parsedData[(req.params.id - 1)].notes.push(categoryNote);
-            }
-        })
+        var checkForScores = 0;
+        checkForScores += newPushNote.scoreOverall;
+        checkForScores += newPushNote.scoreAthleticism;
+        checkForScores += newPushNote.scoreRolling;
+        checkForScores += newPushNote.scoreAwareness;
+        checkForScores += newPushNote.scoreDecisionmaking;
+        checkForScores += newPushNote.scoreEffort;
     	
-        if (newPushNote.note.length > 0 || newPushNote.score.length > 0) {
+        if (newPushNote.note.length > 0 || checkForScores > 0) {
         	googleAuth.authorize()
             .then((auth) => {
                 sheetsApi.spreadsheets.values.append({
@@ -236,20 +214,61 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         ["Effort", 2, "Poor effort"],
         ];
 
+        var stickerOverall = "";
+        var stickerAthleticism = "";
+        var stickerRolling = "";
+        var stickerAwareness = "";
+        var stickerDecisionmaking = "";
+        var stickerEffort = "";
+
+        if (stickerValues[s][0] == "Overall") {
+            var stickerOverall = stickerValues[s][1];
+        }
+        else if (stickerValues[s][0] == "Athleticism") {
+            var stickerAthleticism = stickerValues[s][1];
+        }
+        else if (stickerValues[s][0] == "Rolling") {
+            var stickerRolling = stickerValues[s][1];
+        } 
+        else if (stickerValues[s][0] == "Awareness") {
+            var stickerAwareness = stickerValues[s][1];
+        } 
+        else if (stickerValues[s][0] == "Decisionmaking") {
+            var stickerDecisionmaking = stickerValues[s][1];
+        } 
+        else if (stickerValues[s][0] == "Effort") {
+            var stickerEffort = stickerValues[s][1];
+        } 
+
+
         var stickerNote = {
             ballperson: req.body.noteBallperson,
             author: req.user.username,
             timestamp: noteDate,
-            category: stickerValues[s][0],
-            score: stickerValues[s][1],
-            note: stickerValues[s][2]
+            note: stickerValues[s][2],
+            scoreOverall: stickerOverall,
+            scoreAthleticism: stickerAthleticism,
+            scoreRolling: stickerRolling,
+            scoreAwareness: stickerAwareness,
+            scoreDecisionmaking: stickerDecisionmaking,
+            scoreEffort: stickerEffort,
         };
 
         var stkNoteSend = {
             range: "Notes",
             majorDimension: "ROWS",
-            values: [[stickerNote.ballperson, stickerNote.author, stickerNote.timestamp,
-                        stickerNote.category, stickerNote.score, stickerNote.note]],
+            values: [[
+                stickerNote.ballperson,
+                stickerNote.author,
+                stickerNote.timestamp,
+                stickerNote.note,
+                stickerNote.scoreOverall,
+                stickerNote.scoreAthleticism,
+                stickerNote.scoreRolling,
+                stickerNote.scoreAwareness,
+                stickerNote.scoreDecisionmaking,
+                stickerNote.scoreEffort
+            ]],
         };
 
 
@@ -275,10 +294,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 
         parsedData[(req.params.id - 1)].notes.push(stickerNote);
 
-
     }
-
-	
 	
 	res.redirect("back");
 })
@@ -290,7 +306,7 @@ app.get("/refresh", middleware.isLoggedIn, function(req, res) {
         sheetsApi.spreadsheets.values.batchGet({
             auth: auth,
             spreadsheetId: SPREADSHEET_ID,
-            ranges: ["Biographical!A:P", "Notes!A:F", "Schedule!A:G"],
+            ranges: ["Biographical!A:P", "Notes!A:J", "Schedule!A:G"],
         }, function (err, response) {
             if (err) {
                 console.log('The API returned an error: ' + err);

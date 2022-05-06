@@ -48,7 +48,18 @@ middlewareObj.parseInitialDatabase = function (data) {
 
   
 	notes.forEach(function(note) {
-		var newNote = { ballperson: note[0], author: note[1], timestamp: note[2], category: note[3], score: note[4], note: note[5]};
+		var newNote = {
+			ballperson: note[0],
+			author: note[1],
+			timestamp: note[2],
+			note: note[3],
+			scoreOverall: note[4],
+			scoreAthleticism: note[5],
+			scoreRolling: note[6],
+			scoreAwareness: note[7],
+			scoreDecisionmaking: note[8],
+			scoreEffort: note[9]
+		};
 		
 		initialDatabase.forEach(function(row) {
 			if (newNote.ballperson === (row.firstName + " " + row.lastName)) {
@@ -57,14 +68,14 @@ middlewareObj.parseInitialDatabase = function (data) {
 		});
 	});
 
-  //average scores and add to ballperson object
+  //average overall scores and add to ballperson object
   initialDatabase.forEach(function(ballperson) {
     var scoreCount = 0;
     var scoreSum = 0;
     
     ballperson.notes.forEach(function(note) {
-      if (note.score !== "" && note.score > 0 && note.score <= 10) {
-        var scoreNum = parseInt(note.score);
+      if (note.scoreOverall !== "" && note.scoreOverall > 0 && note.scoreOverall <= 10) {
+        var scoreNum = parseInt(note.scoreOverall);
         scoreSum = scoreSum + scoreNum;
         scoreCount++;
       }

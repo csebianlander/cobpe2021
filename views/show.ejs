@@ -57,7 +57,7 @@
 
       </div>
 			<div class="description">
-				<p> <% if(database[id].age && database[id].age > 0) { %>
+				<p> <% if(database[id].age && database[id].age > 0 && currentUser.username !== "guest") { %>
 							<%= database[id].age %> years old,
 						<% } %>
 						<strong><%= database[id].position %></strong>,

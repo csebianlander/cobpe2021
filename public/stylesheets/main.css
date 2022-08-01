@@ -1,3 +1,7 @@
+.ui.dropdown .menu>.item>.icon {
+	margin-right: 0.1rem!important;
+}
+
 .flushToMenu {
 	padding-top: 50px;
 }

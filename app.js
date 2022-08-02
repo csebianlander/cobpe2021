@@ -168,8 +168,10 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         checkForScores += newPushNote.scoreAwareness;
         checkForScores += newPushNote.scoreDecisionmaking;
         checkForScores += newPushNote.scoreEffort;
-    	
-        if (newPushNote.note.length > 0 || checkForScores > 0) {
+
+	console.log(checkForScores);
+	    
+        if (newPushNote.note || checkForScores > 0) {
         	googleAuth.authorize()
             .then((auth) => {
                 sheetsApi.spreadsheets.values.append({

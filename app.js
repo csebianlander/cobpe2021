@@ -161,7 +161,12 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
             scoreEffort: newNote.values[0][9],
         };
 
-        var checkForScores = scoreOverallInt + scoreAthInt + scoreRolInt + scoreAwaInt + scoreDecInt + scoreEffInt;
+        var checkForScores = parseInt(scoreOverallInt)
+		+ parseInt(scoreAthInt)
+		+ parseInt(scoreRolInt)
+		+ parseInt(scoreAwaInt)
+		+ parseInt(scoreDecInt)
+		+ parseInt(scoreEffInt);
 	console.log('checkForScores: ' + checkForScores);
 	    
         if (newPushNote.note || checkForScores > 0) {

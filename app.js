@@ -115,13 +115,13 @@ app.use("/", authRoutes);
 // ADD COMMENT ROUTE 
 app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newDate = new Date();
-	console.log (newDate);
+	console.log ('newDate: ' + newDate);
     var estDate = moment(newDate).utcOffset(-240);
 	var noteDate = moment(estDate).format('dddd, MMMM D, h:mm a');
-	console.log(noteDate);
+	console.log('noteDate: ' + noteDate);
 	
     var stickerCheck = parseInt(req.body.sticker);
-    console.log(stickerCheck);
+    console.log('stickerCheck: ' + stickerCheck);
 
     var scoreOverallInt = parseInt(req.body.noteOverallScore);
     var scoreAthInt = parseInt(req.body.ath);
@@ -169,7 +169,7 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         checkForScores += newPushNote.scoreDecisionmaking;
         checkForScores += newPushNote.scoreEffort;
 
-	console.log(checkForScores);
+	console.log('checkForScores: ' + checkForScores);
 	    
         if (newPushNote.note || checkForScores > 0) {
         	googleAuth.authorize()

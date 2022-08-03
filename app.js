@@ -115,13 +115,10 @@ app.use("/", authRoutes);
 // ADD COMMENT ROUTE 
 app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
 	var newDate = new Date();
-	console.log ('newDate: ' + newDate);
     var estDate = moment(newDate).utcOffset(-240);
 	var noteDate = moment(estDate).format('dddd, MMMM D, h:mm a');
-	console.log('noteDate: ' + noteDate);
 	
     var stickerCheck = parseInt(req.body.sticker);
-    console.log('stickerCheck: ' + stickerCheck);
 
     var scoreOverallInt = parseInt(req.body.noteOverallScore);
     var scoreAthInt = parseInt(req.body.ath);
@@ -129,13 +126,6 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     var scoreAwaInt = parseInt(req.body.awa);
     var scoreDecInt = parseInt(req.body.dec);
     var scoreEffInt = parseInt(req.body.eff);
-
-    console.log('scoreOverallInt: ' + scoreOverallInt);
-    console.log('scoreAthInt: ' + scoreAthInt);
-    console.log('scoreRolInt: ' + scoreRolInt);
-    console.log('scoreAwaInt: ' + scoreAwaInt);
-    console.log('scoreDecInt: ' + scoreDecInt);
-    console.log('scoreEffInt: ' + scoreEffInt);
 	
     if (stickerCheck === 0) {
         var newNote = {
@@ -168,13 +158,14 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
             scoreEffort: newNote.values[0][9],
         };
 
-        var checkForScores = parseInt(scoreOverallInt)
-		+ parseInt(scoreAthInt)
-		+ parseInt(scoreRolInt)
-		+ parseInt(scoreAwaInt)
-		+ parseInt(scoreDecInt)
-		+ parseInt(scoreEffInt);
-	console.log('checkForScores: ' + checkForScores);
+        var checkForScores = isNaN(scoreOverallInt)
+		+ isNaN(scoreAthInt)
+		+ isNaN(scoreRolInt)
+		+ isNaN(scoreAwaInt)
+		+ isNaN(scoreDecInt)
+		+ isNaN(scoreEffInt);
+	
+	console.log('checkForScores (should match number of scores added): ' + checkForScores);
 	    
         if (newPushNote.note || checkForScores > 0) {
         	googleAuth.authorize()

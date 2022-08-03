@@ -130,6 +130,13 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
     var scoreDecInt = parseInt(req.body.dec);
     var scoreEffInt = parseInt(req.body.eff);
 
+    console.log('scoreOverallInt: ' + scoreOverallInt);
+    console.log('scoreAthInt: ' + scoreAthInt);
+    console.log('scoreRolInt: ' + scoreRolInt);
+    console.log('scoreAwaInt: ' + scoreAwaInt);
+    console.log('scoreDecInt: ' + scoreDecInt);
+    console.log('scoreEffInt: ' + scoreEffInt);
+	
     if (stickerCheck === 0) {
         var newNote = {
             range: "Notes",

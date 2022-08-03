@@ -158,14 +158,13 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
             scoreEffort: newNote.values[0][9],
         };
 
-        var checkForScores = isNaN(scoreOverallInt)
-		+ isNaN(scoreAthInt)
-		+ isNaN(scoreRolInt)
-		+ isNaN(scoreAwaInt)
-		+ isNaN(scoreDecInt)
-		+ isNaN(scoreEffInt);
-	
-	console.log('checkForScores (should match number of scores added): ' + checkForScores);
+        var checkForScores = 6 - isNaN(scoreOverallInt)
+		- isNaN(scoreAthInt)
+		- isNaN(scoreRolInt)
+		- isNaN(scoreAwaInt)
+		- isNaN(scoreDecInt)
+		- isNaN(scoreEffInt);
+	console.log('checkForScores: ' + checkForScores);
 	    
         if (newPushNote.note || checkForScores > 0) {
         	googleAuth.authorize()

@@ -162,12 +162,14 @@ app.post("/player/:id", middleware.isLoggedIn, function(req, res) {
         };
 
         var checkForScores = 0;
-        checkForScores += newPushNote.scoreOverall;
-        checkForScores += newPushNote.scoreAthleticism;
-        checkForScores += newPushNote.scoreRolling;
-        checkForScores += newPushNote.scoreAwareness;
-        checkForScores += newPushNote.scoreDecisionmaking;
-        checkForScores += newPushNote.scoreEffort;
+	console.log('checkForScores init: ' + checkForScores);
+
+        checkForScores += scoreOverallInt;
+        checkForScores += scoreAthInt;
+        checkForScores += scoreRolInt;
+        checkForScores += scoreAwaInt;
+        checkForScores += scoreDecInt;
+        checkForScores += scoreEffInt;
 
 	console.log('checkForScores: ' + checkForScores);
 	    

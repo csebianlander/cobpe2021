@@ -15,7 +15,7 @@
         <tr>
           <% row.forEach(function(cell, i) { %>
             <td>
-            <% if (!isNaN(cell)) { %>
+            <% if (cell && i !== 0) { %>
               Team 
             <% } %>
             <%= cell %></td>
